@@ -1,0 +1,19 @@
+global proc AEdecomposeRotateTemplate(string $nodeName)
+{
+    editorTemplate("-beginScrollLayout");
+
+        editorTemplate("-beginLayout","Rotation Attributes", "-collapse",false);
+            editorTemplate("-addControl","method");
+            editorTemplate("-addControl","rotate");
+            editorTemplate("-addControl","rotateOrder");
+            editorTemplate("-addControl","axisOrient");
+            editorTemplate("-addControl","outDecomposedAngle");
+        editorTemplate("-endLayout");
+
+        AEdependNodeTemplate($nodeName);
+
+    editorTemplate("-addExtraControls");
+
+    editorTemplate("-endScrollLayout");
+}
+

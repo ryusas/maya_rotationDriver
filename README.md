@@ -40,7 +40,7 @@ method アトリビュートによって、角度の分解・合成手法を、
 と Exponential Map のどちらかを選択することが出来ます。
 
 ソースコードを見れば分かりますが、Exponential Map は Maya API の MQuaternion をクラスを用いた非常に簡単な実装です。
-分解は log() の２倍、合成は exp() の半分にしているだけです。
+分解は log() を２倍して出力、合成は入力の半分を exp() しているだけです。
 
 サンプルスクリプト [examples/plotBendHV.py](https://github.com/ryusas/maya_rotationDriver/tree/master/examples/plotBendHV.py) を Maya 上で実行すると、縦方向と横方向の曲げを変化させた時に描かれる球面上の軌跡がプロットされます。これで二種類の結果の違いを確認出来ます。
 

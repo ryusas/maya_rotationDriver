@@ -47,10 +47,7 @@ Stereographic Projection ‚Å‚Ì•ª‰ğ‚ÍA‚Ü‚¸“ü—Í‰ñ“]‚ğ‹È‚°‚Æ”P‚è‚É•ª—£‚µ‚½Œã‚ÉA‹È‚
 
 Exponential Map ‚Å‚Ì•ª‰ğ‚ÍƒNƒH[ƒ^ƒjƒIƒ“‚Ì log() ‚Ì‚Q”{A‡¬‚Í“ü—Í‚Ì1/2”{‚Ì exp() ‚Æ‚µ‚Ä‚¢‚Ü‚·BMaya API ‚Ì MQuaternion ƒNƒ‰ƒX‚É‚Í‚»‚ê‚ç‚Ìƒƒ\ƒbƒh‚ª‚ ‚é‚Ì‚ÅA‚»‚ê‚ç‚ğŒÄ‚Ño‚·‚¾‚¯‚Ì”ñí‚ÉŠÈ’P‚ÈÀ‘•‚Æ‚È‚Á‚Ä‚¢‚Ü‚·BStereographic Projection ‚É‹ß‚¢’l‚ªZo‚³‚ê‚Ü‚·‚ªA‚±‚¿‚ç‚Í‹È‚°E”P‚è‚Ì‡”Ô‚à‚ ‚è‚Ü‚¹‚ñB
 
-À‚Í method ‚ª‚Ç‚¿‚ç‚Ìê‡‚É‚à reverseOrder ‚ª ON ‚Ìê‡‚Í”½“]ˆ—‚ğs‚Á‚Ä‚¢‚Ü‚·B‹»–¡[‚¢‚±‚Æ‚ÉAExponential Map ‚Ìê‡‚Í‚»‚Ìˆá‚¢‚ªŒ»‚ê‚Ü‚¹‚ñB
-
-ƒ\[ƒXƒR[ƒh‚ğŒ©‚ê‚Î•ª‚©‚è‚Ü‚·‚ªAExponential Map ‚Í Maya API ‚Ì MQuaternion ‚ğƒNƒ‰ƒX‚ğ—p‚¢‚½”ñí‚ÉŠÈ’P‚ÈÀ‘•‚Å‚·B
-•ª‰ğ‚Í log() ‚ğ‚Q”{‚µ‚Äo—ÍA‡¬‚Í“ü—Í‚Ì”¼•ª‚ğ exp() ‚µ‚Ä‚¢‚é‚¾‚¯‚Å‚·B
+ƒ\[ƒXƒR[ƒh‚ğŒ©‚ê‚Î•ª‚©‚è‚Ü‚·‚ªAÀ‚Í method ‚ª‚Ç‚¿‚ç‚Ìê‡‚É‚à reverseOrder ‚ª ON ‚Ìê‡‚Í”½“]ˆ—‚ğs‚Á‚Ä‚¢‚Ü‚·B‹»–¡[‚¢‚±‚Æ‚ÉAExponential Map ‚Ìê‡‚Í‚»‚Ìˆá‚¢‚ªŒ»‚ê‚Ü‚¹‚ñB
 
 ƒTƒ“ƒvƒ‹ƒXƒNƒŠƒvƒg [examples/plotBendHV.py](https://github.com/ryusas/maya_rotationDriver/tree/master/examples/plotBendHV.py) ‚ğ Maya ã‚ÅÀs‚·‚é‚ÆAc•ûŒü‚Æ‰¡•ûŒü‚Ì‹È‚°‚ğ•Ï‰»‚³‚¹‚½‚É•`‚©‚ê‚é‹…–Êã‚Ì‹OÕ‚ªƒvƒƒbƒg‚³‚ê‚Ü‚·B‚±‚ê‚Å“ñí—Ş‚Ì‹È‚°‰ñ“]‚ÌŒ‹‰Ê‚Ìˆá‚¢‚ğŠm”Fo—ˆ‚Ü‚·B
 
@@ -79,12 +76,11 @@ decomposeRotate ƒm[ƒh‚Æ composeRotate ƒm[ƒh‚Ìİ’è‚ª“¯‚¶‚Å‚ ‚ê‚ÎA•ª‰ğ‚µ‚½‚à‚Ì‚
   ƒLƒ…[ƒu‚Ì—á‚Æ“¯‚¶‚Å‚·‚ªAƒ{[ƒ“‚Ìƒ[ƒJƒ‹²•ûŒü‚ğ‚ ‚¦‚Ä•Ï‚¦‚Ä‚ ‚èAcomposeRotate ‚Ì axisOrient ƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚Á‚Ä•ûŒü‚ğˆê’v‚³‚¹‚Ä‚¢‚Ü‚·B
 
 * [examples/bend_roll.ma](https://github.com/ryusas/maya_rotationDriver/tree/master/examples/bend_roll.ma)
-  ‹È‚°‚Æ”P‚è‚É•ª—£‚µ‚½‰ñ“]‚ğA“ñ‚Â‚Ì‹È‚°‚Æ”P‚è‚Ì“ñ‚Â‚Ì‰ñ“]‚É•ª‚¯‚ÄÚ‘±‚µ‚Ä‚¢‚é—áB
-  reverseOrder ‚ğ•Ï‚¦‚½“ñí—Ş‚Ì•ª‰ğŒ‹‰Ê‚ğA‹È‚°‚Æ”P‚è‚Ì‡˜‚ªˆÙ‚È‚é“ñ‚Â‚Ìƒ{[ƒ“‚ÉÚ‘±‚µ‚Ä‚¢‚éB
-  ˆê•û‚Í bendEroll ‚Ì‡A‚à‚¤ˆê•û‚Í rollEbend ‚Ì‡‚É‚È‚Á‚Ä‚¢‚Ü‚·B
-  reverseOrder ‚Ìİ’è‚ª“KØ‚Å‚È‚¢‚ÆŠú‘Ò‚·‚éŒ‹‰Ê‚Í“¾‚ç‚ê‚Ü‚¹‚ñB
+  ‹È‚°‚Æ”P‚è‚É•ª—£‚µ‚½‰ñ“]‚ğA‹È‚°‚Æ”P‚è‚Ì‡”Ô‚ªˆÙ‚È‚é“ñ‚Â‚ÌŠK‘w‚É•ª‚¯‚ÄÚ‘±‚µ‚Ä‚¢‚é—áB
+  reverseOrder ‚ğ•Ï‚¦‚é‚½‚ß‚É decomposeRotate ƒm[ƒh‚ğ“ñ‚Âì‚Á‚Ä“ñí—Ş‚Ì•ª‰ğŒ‹‰Ê‚ğ“¾‚Ä‚¢‚Ü‚·B‚»‚ê‚ğ‹È‚°‚Æ”P‚è‚Ì‡˜‚ªˆÙ‚È‚é“ñ‚Â‚Ì joint ŠK‘w‚ÉÚ‘±‚µ‚Ä‚¢‚Ü‚·B
+  ‚»‚ê‚¼‚ê‚Ì reverseOrder ‚Ìİ’è‚ª“KØ‚Å‚È‚¢‚ÆŠú‘Ò‚·‚éŒ‹‰Ê‚Í“¾‚ç‚ê‚Ü‚¹‚ñB
   ‚Ü‚½ method ‚Í Stereographic Projection ‚Å‚·‚ªAExponential Map ‚É‚·‚é‚ÆŠú‘Ò‚·‚éŒ‹‰Ê‚Í“¾‚ç‚ê‚Ü‚¹‚ñB
 
 ##‰ü’ù—š—ğ
-* 2016.9.20 reverseOrderƒAƒgƒŠƒrƒ…[ƒg’Ç‰ÁAƒTƒ“ƒvƒ‹ƒV[ƒ“’Ç‰Á‚ÆƒhƒLƒ…ƒƒ“ƒg‰Á•MB
-* 2016.7.9 ‰”Å
+* 2016.9.20: reverseOrderƒAƒgƒŠƒrƒ…[ƒg’Ç‰ÁAƒTƒ“ƒvƒ‹ƒV[ƒ“’Ç‰Á‚ÆƒhƒLƒ…ƒƒ“ƒg‰Á•MB
+* 2016.7.9: ‰”Å

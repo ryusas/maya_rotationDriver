@@ -3,7 +3,7 @@ u"""
 ボーン回転を３方向の独立した角度（捻り、横曲げ、縦曲げ）に分解・合成する Maya ノード。
 """
 __author__ = 'ryusas'
-__version__ = '1.0.0'
+__version__ = '1.1.20160920'
 
 #==================================================================================
 maya_useNewAPI = True
@@ -67,6 +67,9 @@ class DecomposeRotate(api.MPxNode):
         fnEnum.addField('Exponential Map', 1)
         cls.addAttribute(cls.aMethod)
 
+        cls.aReverseOrder = fnNumeric.create('reverseOrder', 'ror', api.MFnNumericData.kBoolean, False)
+        cls.addAttribute(cls.aReverseOrder)
+
         cls.aRotateX = fnUnit.create('rotateX', 'rx', api.MFnUnitAttribute.kAngle, 0.)
         cls.aRotateY = fnUnit.create('rotateY', 'ry', api.MFnUnitAttribute.kAngle, 0.)
         cls.aRotateZ = fnUnit.create('rotateZ', 'rz', api.MFnUnitAttribute.kAngle, 0.)
@@ -97,6 +100,7 @@ class DecomposeRotate(api.MPxNode):
         cls.addAttribute(cls.aOutDecomposedAngle)
 
         cls.attributeAffects(cls.aMethod, cls.aOutDecomposedAngle)
+        cls.attributeAffects(cls.aReverseOrder, cls.aOutDecomposedAngle)
         cls.attributeAffects(cls.aRotate, cls.aOutDecomposedAngle)
         cls.attributeAffects(cls.aRotateOrder, cls.aOutDecomposedAngle)
         cls.attributeAffects(cls.aAxisOrient, cls.aOutDecomposedAngle)
@@ -111,11 +115,17 @@ class DecomposeRotate(api.MPxNode):
         oriQ = quat.inverse()
         quat *= MEulerRotation(block.inputValue(self.aRotate).asDouble3(), block.inputValue(self.aRotateOrder).asShort()).asQuaternion()
         quat *= oriQ
+
+        reverse = block.inputValue(self.aReverseOrder).asBool()
+        if reverse:
+            quat = quat.inverse()
         if block.inputValue(self.aMethod).asShort():
             rhv = quat.log()
             rhv = (rhv[0] * 2., rhv[1] * 2., rhv[2] * 2.)
         else:
             rhv = _toRollBendHV(quat)
+        if reverse:
+            rhv = (-rhv[0], -rhv[1], -rhv[2])
 
         block.outputValue(self.aOutDecomposedAngle).set3Double(*rhv)
 
@@ -135,6 +145,9 @@ class ComposeRotate(api.MPxNode):
         fnEnum.addField('Stereographic Projection', 0)
         fnEnum.addField('Exponential Map', 1)
         cls.addAttribute(cls.aMethod)
+
+        cls.aReverseOrder = fnNumeric.create('reverseOrder', 'ror', api.MFnNumericData.kBoolean, False)
+        cls.addAttribute(cls.aReverseOrder)
 
         cls.aRoll = fnUnit.create('roll', 'rl', api.MFnUnitAttribute.kAngle, 0.)
         cls.aBendH = fnUnit.create('bendH', 'bh', api.MFnUnitAttribute.kAngle, 0.)
@@ -166,6 +179,7 @@ class ComposeRotate(api.MPxNode):
         cls.addAttribute(cls.aOutRotate)
 
         cls.attributeAffects(cls.aMethod, cls.aOutRotate)
+        cls.attributeAffects(cls.aReverseOrder, cls.aOutRotate)
         cls.attributeAffects(cls.aDecomposedAngle, cls.aOutRotate)
         cls.attributeAffects(cls.aAxisOrient, cls.aOutRotate)
         cls.attributeAffects(cls.aRotateOrder, cls.aOutRotate)
@@ -176,13 +190,20 @@ class ComposeRotate(api.MPxNode):
         if plug != self.aOutRotate:
             return
 
-        oriQ = MEulerRotation(block.inputValue(self.aAxisOrient).asDouble3()).asQuaternion()
-        quat = oriQ.inverse()
         rhv = block.inputValue(self.aDecomposedAngle).asDouble3()
+
+        reverse = block.inputValue(self.aReverseOrder).asBool()
+        if reverse:
+            rhv = (-rhv[0], -rhv[1], -rhv[2])
         if block.inputValue(self.aMethod).asShort():
-            quat *= MQuaternion(rhv[0] * .5, rhv[1] * .5, rhv[2] * .5, 0.).exp()
+            quat = MQuaternion(rhv[0] * .5, rhv[1] * .5, rhv[2] * .5, 0.).exp()
         else:
-            quat *= _fromRollBendHV(rhv)
+            quat = _fromRollBendHV(rhv)
+        if reverse:
+            quat = quat.inverse()
+
+        oriQ = MEulerRotation(block.inputValue(self.aAxisOrient).asDouble3()).asQuaternion()
+        quat = oriQ.inverse() * quat
         quat *= oriQ
 
         rot = MEulerRotation(0., 0., 0., block.inputValue(self.aRotateOrder).asShort())

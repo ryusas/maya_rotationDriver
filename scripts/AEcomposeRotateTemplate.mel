@@ -1,19 +1,24 @@
-global proc AEcomposeRotateTemplate(string $nodeName)
+global proc AEcomposeRotateTemplate(string $nodename)
 {
     editorTemplate("-beginScrollLayout");
 
-        editorTemplate("-beginLayout","Rotation Attributes", "-collapse",false);
-            editorTemplate("-addControl","method");
-            editorTemplate("-addControl","decomposedAngle");
-            editorTemplate("-addControl","axisOrient");
-            editorTemplate("-addControl","rotateOrder");
-            editorTemplate("-addControl","outRotate");
-        editorTemplate("-endLayout");
+    editorTemplate("-beginLayout","Input Attributes", "-collapse",0);
+        editorTemplate("-addControl","method");
+        editorTemplate("-addControl","reverseOrder");
+        editorTemplate("-suppress","decomposedAngle");
+        editorTemplate("-addControl","roll");
+        editorTemplate("-addControl","bendH");
+        editorTemplate("-addControl","bendV");
+        editorTemplate("-addControl","axisOrient");
+        editorTemplate("-addControl","rotateOrder");
+    editorTemplate("-endLayout");
 
-        AEdependNodeTemplate($nodeName);
+    editorTemplate("-beginLayout","Output Attributes", "-collapse",0);
+        editorTemplate("-addControl","outRotate");
+    editorTemplate("-endLayout");
+
+    AEdependNodeTemplate($nodename);
 
     editorTemplate("-addExtraControls");
-
     editorTemplate("-endScrollLayout");
 }
-

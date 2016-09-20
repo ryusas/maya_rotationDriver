@@ -49,10 +49,11 @@ Stereographic Projection での分解は、まず入力回転を曲げと捻り�
 reverseOrder が OFF の場合は階層上位から見て曲げ・捻りの順、ON の場合は捻り・曲げの順となります。
 
 Exponential Map での分解はクォータニオンの log() の２倍、合成は入力の1/2倍の exp() としています。Maya API の MQuaternion クラスにはそれらのメソッドがあるので、それらを呼び出すだけの非常に簡単な実装となっています。
-Stereographic Projection に近い値が算出されますが、こちらは曲げ・捻りの順番もありません。よって、reverseOrder を ON/OFF しても結果は変わりません。
-こちらで得られるのは、曲げと捻りに近い値が得られるものの、別の表現による３つの角度と考えた方が良いと思います。
+Stereographic Projection に近い値が算出されますが、こちらには曲げ・捻りの順番もありません。よって、reverseOrder を ON/OFF しても結果は変わりません。
+こちらで得られるのは、正確には曲げと捻りではなく別の表現による３つの角度と考えた方が良いと思います。
 
-ソースコードを見れば分かりますが、実は method がどちらの場合にも reverseOrder が ON の場合は反転処理を行っています。興味深いことに、Exponential Map の場合はその違いが現れません。このことからも Exponential Map の３つの角度は回転の順番という概念から解放されていることがわかります。
+[ソースコード](https://github.com/ryusas/maya_rotationDriver/blob/master/plug-ins/rotationDriver.py)
+を見れば分かりますが、実は method がどちらの場合にも reverseOrder が ON の場合は反転処理を行っています。興味深いことに、Exponential Map の場合はその違いが現れません。このことからも Exponential Map の３つの角度は回転の順番という概念から解放されていることがわかります。
 
 サンプルスクリプト [examples/plotBendHV.py](https://github.com/ryusas/maya_rotationDriver/tree/master/examples/plotBendHV.py) を Maya 上で実行すると、縦方向と横方向の曲げを変化させた時に描かれる球面上の軌跡がプロットされます。これで二種類の曲げ回転の結果の違いを確認出来ます（先に述べたように Exponential Map で得られているのは純粋な曲げではありませんが）。
 
@@ -91,4 +92,5 @@ decomposeRotate ノードと composeRotate ノードの設定が同じであれ�
 ##改訂履歴
 * 2016.9.20: reverseOrderアトリビュート追加、サンプルシーン追加とドキュメント加筆。
 * 2016.7.9: 初版
+
 

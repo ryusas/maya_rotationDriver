@@ -15,7 +15,7 @@ _TYPE_IDS = (  # 0x00000000 ～ 0x0007ffff
 
 import sys
 import math
-from math import sin, cos, tan, atan2
+from math import sin, cos, tan, atan2, pi as _PI
 
 import maya.api.OpenMaya as api
 from maya.api.OpenMaya import MQuaternion, MVector, MEulerRotation
@@ -23,6 +23,9 @@ from maya.api.OpenMaya import MQuaternion, MVector, MEulerRotation
 _X_VEC = MVector.kXaxisVector
 _Y_VEC = MVector.kYaxisVector
 _Z_VEC = MVector.kZaxisVector
+
+_2PI = 2. * _PI
+_boundAngle = lambda x: (x - _2PI) if x > _PI else ((x + _2PI) if x < -_PI else x)
 
 
 #==================================================================================
@@ -33,7 +36,7 @@ def _toRollBendHV(quat):
 
     rollQ = quat * bendQ.inverse()
     return (
-        atan2(rollQ[0], rollQ[3]) * 2.,
+        _boundAngle(atan2(rollQ[0], rollQ[3]) * 2.),
         atan2(_Z_VEC * vec, b) * -2.,
         atan2(_Y_VEC * vec, b) * 2.,
     )

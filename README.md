@@ -1,4 +1,4 @@
-[日本語](README.ja.md)
+English | [日本語](README.ja.md)
 
 # maya_rotationDriver
 This is a simple sample Python implementation of a Maya plug-in that decomposes and composes bone Euler rotations into three independent angles based on the bone's orientation: "twist", "vertical bend", and "horizontal bend".

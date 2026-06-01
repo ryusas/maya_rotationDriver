@@ -1,4 +1,4 @@
-[English](README.md)
+[English](README.md) | 日本語
 
 # maya_rotationDriver
 ボーンのオイラー角回転を、ボーン方向を元にした「捻り／縦方向の曲げ／横方向の曲げ」という独立した三つの角度に分解・合成するMayaプラグインのPython実装の簡単なサンプルです。
